@@ -44,7 +44,10 @@ repositories {
 
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
-    compile('com.graphql-java:graphql-spring-boot-starter:STEVE')
+
+    /* Replace this with your locally built version */
+    compile('com.graphql-java:graphql-spring-boot-starter:LOCAL')
+
     compile('com.graphql-java:graphiql-spring-boot-starter:3.9.2')
     compile("org.jetbrains.kotlin:kotlin-stdlib-jre8:${kotlinVersion}")
     compile("org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}")

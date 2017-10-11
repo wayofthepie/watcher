@@ -1,0 +1,16 @@
+schema {
+    query: Query
+}
+
+type Query {
+    human(id: String!): Human
+}
+
+type Mutation {
+    writeHuman(name: String) : Human
+}
+
+type Human {
+    id: String!
+    name: String!
+}

@@ -1,0 +1,74 @@
+buildscript {
+    ext {
+        kotlinVersion = '1.1.51'
+        springBootVersion = '2.0.0.M4'
+        springLoadedVersion = '1.2.8.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+        maven { url "https://repo.spring.io/snapshot" }
+        maven { url "https://repo.spring.io/milestone" }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
+        classpath("org.jetbrains.kotlin:kotlin-allopen:${kotlinVersion}")
+        classpath 'org.junit.platform:junit-platform-gradle-plugin:1.0.1'
+    }
+}
+
+apply plugin: 'kotlin'
+apply plugin: 'kotlin-spring'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'org.junit.platform.gradle.plugin'
+
+group = 'cd.river'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+compileTestKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+    maven { url "https://repo.spring.io/snapshot" }
+    maven { url "https://repo.spring.io/milestone" }
+    maven { url 'https://jitpack.io' }
+}
+
+
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile('com.graphql-java:graphql-spring-boot-starter:STEVE')
+    compile('com.graphql-java:graphiql-spring-boot-starter:3.9.2')
+    compile("org.jetbrains.kotlin:kotlin-stdlib-jre8:${kotlinVersion}")
+    compile("org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}")
+    compile 'io.fabric8:kubernetes-client:2.6.3'
+    compile 'com.graphql-java:graphql-java-tools:4.1.2'
+    compile 'org.springframework.data:spring-data-redis:2.0.0.RELEASE'
+    compile "redis.clients:jedis:2.9.0"
+    compile "com.github.adelnizamutdinov:kotlin-either:2.0.1"
+    compile "com.fasterxml.jackson.module:jackson-module-kotlin:2.9.0"
+
+    testCompile("org.springframework.boot:spring-boot-starter-test") {
+        exclude module: "junit"
+    }
+    testCompile("org.junit.jupiter:junit-jupiter-api:5.0.1")
+    testRuntime("org.junit.jupiter:junit-jupiter-engine:5.0.1")
+    testCompile "com.nhaarman:mockito-kotlin:1.5.0"
+}
+
+junitPlatform {
+    platformVersion '1.0.0'
+    logManager 'org.apache.logging.log4j.jul.LogManager'
+    reportsDir file('build/test-results/junit-platform')
+}
+
+bootRun {
+    jvmArgs = ["-Xms30m", "-Xmx30m"]
+}

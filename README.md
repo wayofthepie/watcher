@@ -2,7 +2,14 @@
 Quick example of Spring, Kotlin and GraphQL. 
 
 # Sample Mutations And Queries
-Run `./gradlew bootRun`, and navigate to http://localhost:8080/graphiql. Now create a Human!
+First, launch a redis instance, quickest way is docker:
+
+```
+$ docker run -ti --rm --name redis -p 6379:6379 redis
+```
+
+The connection config is hardcoded in the code to localhost:6379.
+Next, run `./gradlew bootRun`, and navigate to http://localhost:8080/graphiql. Now create a Human!
 
 Request:
 ```

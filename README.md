@@ -1,3 +1,8 @@
+# Note
+Until https://github.com/graphql-java/graphql-spring-boot/pulls is merged, you
+will have to locally build the graphql-spring-boot-starter from the version in
+that pull request.
+
 # Spring/Kotlin/GraphQL
 Quick example of Spring, Kotlin and GraphQL. 
 
@@ -55,7 +60,4 @@ Response:
 }
 ```
 
-# Note
-Until https://github.com/graphql-java/graphql-spring-boot/pulls is merged, you
-will have to locally build the graphql-spring-boot-starter from the version in 
-that pull request.
+
